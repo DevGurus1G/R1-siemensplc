@@ -1,0 +1,51 @@
+main {
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 1em;
+}
+label {
+  font-size: 1.2em;
+}
+input,
+textarea {
+  outline: none;
+  border: none;
+  padding: 1em;
+  border-radius: 1em;
+  resize: none;
+}
+
+textarea {
+  height: 10em;
+}
+
+input:focus,
+textarea:focus {
+  outline: 1px solid #ffffff;
+}
+
+.form-container {
+  background-color: #006f2b;
+  color: #ffffff;
+  border-radius: 1em;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+button {
+  width: fit-content;
+  padding: 0.5em 2em;
+  background-color: #cccccc;
+  border: none;
+}
