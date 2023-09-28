@@ -18,9 +18,14 @@ main {
   position: absolute;
   left: 0;
   z-index: 1000;
+  transition: left 0.25s ease-in-out;
   /* animation-name: avanceTranvia;
   animation-duration: 7.5s;
   animation-iteration-count: infinite; */
+}
+
+.animacionTranvia {
+  animation: avanceTranvia 7.5s infinite 1s;
 }
 
 .tranvia img {
@@ -41,6 +46,7 @@ main {
   background-color: #dc2424;
   height: 2em;
   border-radius: 50%;
+  position: relative;
 }
 
 .mapa-tranvia .circulo {
@@ -48,6 +54,37 @@ main {
   background-color: #cccccc;
   height: 2em;
   border-radius: 50%;
+  position: relative;
+}
+
+.leyenda {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #006f2b;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Pico apuntado */
+.leyenda::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: solid transparent;
+  border-width: 8px;
+  border-bottom-color: #006f2b;
+}
+
+.circulo:hover .leyenda,
+.home:hover .leyenda {
+  opacity: 1;
 }
 
 .botones {
@@ -64,7 +101,7 @@ main {
 .botones button {
   outline: none;
   border: none;
-  background-color: #006f2b;
+  background-color: #ba1515;
   color: #ffffff;
   width: 100%;
   padding: 2em;
@@ -72,11 +109,57 @@ main {
 }
 
 .botones button:hover {
+  background-color: #ed0e0e;
+}
+
+.botones .active {
+  background-color: #006f2b;
+}
+
+.botones .active:hover {
   background-color: #58ab27;
 }
 
 .botones #retroceso .icon {
   transform: rotate(180deg);
+}
+
+/* Animaciones ----------------------------------------------------------------   */
+
+:root {
+  --left-actual: 16%;
+}
+@keyframes avanceTranvia {
+  0% {
+    left: 16%;
+  }
+  10% {
+    left: 32%;
+  }
+  20% {
+    left: 50%;
+  }
+  30% {
+    left: 66%;
+  }
+  40% {
+    left: 82%;
+  }
+  50% {
+    left: 82%;
+  }
+  60% {
+    left: 66%;
+  }
+  70% {
+    left: 50%;
+  }
+  80% {
+    left: 32%;
+  }
+  90% {
+    left: 16%;
+  }
 }
 
 /* Responsive -----------------------------------------------------------------   */
@@ -94,42 +177,41 @@ main {
   .botones button:last-child {
     border-top-right-radius: 1em;
   }
-}
 
-/* Animaciones ----------------------------------------------------------------   */
+  .mapa-tranvia .tranvia {
+    left: 3%;
+  }
 
-@keyframes avanceTranvia {
-  0% {
-    left: 0;
-  }
-  10% {
-    left: 16%;
-  }
-  20% {
-    left: 32%;
-  }
-  30% {
-    left: 50%;
-  }
-  40% {
-    left: 66%;
-  }
-  50% {
-    left: 82%;
-  }
-  60% {
-    left: 66%;
-  }
-  70% {
-    left: 50%;
-  }
-  80% {
-    left: 32%;
-  }
-  90% {
-    left: 16%;
-  }
-  100% {
-    left: 0%;
+  @keyframes avanceTranvia {
+    0% {
+      left: 19%;
+    }
+    10% {
+      left: 36%;
+    }
+    20% {
+      left: 53%;
+    }
+    30% {
+      left: 70%;
+    }
+    40% {
+      left: 86%;
+    }
+    50% {
+      left: 86%;
+    }
+    60% {
+      left: 70%;
+    }
+    70% {
+      left: 53%;
+    }
+    80% {
+      left: 36%;
+    }
+    90% {
+      left: 19%;
+    }
   }
 }
