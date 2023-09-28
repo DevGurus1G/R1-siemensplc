@@ -24,10 +24,37 @@ main {
   animation-iteration-count: infinite; */
 }
 
-.animacionTranvia {
-  animation: avanceTranvia 7.5s infinite 1s;
+.homePrimera {
+  animation: homePrimera 1.5s forwards 0s;
 }
 
+.primeraSegunda {
+  animation: primeraSegunda 1.5s forwards 0s;
+}
+.segundaTercera {
+  animation: segundaTercera 1.5s forwards 0s;
+}
+
+.terceraCuarta {
+  animation: terceraCuarta 1.5s forwards 0s;
+}
+.cuartaQuinta {
+  animation: cuartaQuinta 1.5s forwards 0s;
+}
+
+.quintaCuarta {
+  animation: primeraSegunda 1.5s reverse 0s;
+}
+.cuartaTercera {
+  animation: segundaTercera 1.5s reverse 0s;
+}
+
+.terceraSegunda {
+  animation: terceraCuarta 1.5s reverse 0s;
+}
+.segundaPrimera {
+  animation: cuartaQuinta 1.5s reverse 0s;
+}
 .tranvia img {
   width: 100px;
 }
@@ -129,36 +156,45 @@ main {
 :root {
   --left-actual: 16%;
 }
-@keyframes avanceTranvia {
+@keyframes homePrimera {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 16%;
+  }
+}
+
+@keyframes primeraSegunda {
   0% {
     left: 16%;
   }
-  10% {
+  100% {
     left: 32%;
   }
-  20% {
-    left: 50%;
-  }
-  30% {
-    left: 66%;
-  }
-  40% {
-    left: 82%;
-  }
-  50% {
-    left: 82%;
-  }
-  60% {
-    left: 66%;
-  }
-  70% {
-    left: 50%;
-  }
-  80% {
+}
+@keyframes segundaTercera {
+  0% {
     left: 32%;
   }
-  90% {
-    left: 16%;
+  100% {
+    left: 48%;
+  }
+}
+@keyframes terceraCuarta {
+  0% {
+    left: 48%;
+  }
+  100% {
+    left: 64%;
+  }
+}
+@keyframes cuartaQuinta {
+  0% {
+    left: 64%;
+  }
+  100% {
+    left: 80%;
   }
 }
 

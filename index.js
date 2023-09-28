@@ -1,62 +1,80 @@
+let animaciones = []
 // constantes de los botones e img tranvia
 const btnMartxa = document.querySelector("#martxa")
-const btnParo = document.querySelector("#paro")
+const btnAbrirPuertas = document.querySelector("#abrirPuertas")
 const btnAvance = document.querySelector("#avance")
 const btnRetroceso = document.querySelector("#retroceso")
 
 const imgTranvia = document.querySelector(".tranvia")
 
-btnMartxa.addEventListener("click", alternarAnimacion)
-btnParo.addEventListener("click", alternarAnimacion)
-btnAvance.addEventListener("click", avanzar)
-btnRetroceso.addEventListener("click", retroceder)
+btnMartxa.addEventListener("click", empezarAnimacion)
+btnAvance.addEventListener("mousedown", (e) => moverseAvanzar(e))
+btnAvance.addEventListener("mouseup", (e) => moverseAvanzar(e))
+btnRetroceso.addEventListener("mousedown", (e) => moverseRetroceder(e))
+btnRetroceso.addEventListener("mouseup", (e) => moverseRetroceder(e))
 
-let animation
-let isAnimating = false
-function alternarAnimacion() {
-  if (!isAnimating) {
-    empezarAnimacion()
-  } else {
-    pausarOcontinuarAnimacion()
-  }
-}
-
+let animacionesNombre = [
+  "homePrimera",
+  "primeraSegunda",
+  "segundaTercera",
+  "terceraCuarta",
+  "cuartaQuinta",
+]
+let parar = false
+let leftPosiciones = ["16%", "32%", "48%", "64%", "80%"]
 function empezarAnimacion() {
   btnMartxa.classList.add("active")
-  if (!animation) {
-    if (imgTranvia.style.left != 0) {
-      imgTranvia.style.left = "0%"
-    }
-    imgTranvia.style.left = "16%"
-    animation = imgTranvia.animate(
-      [{ left: "16%" }, { left: "82%" }, { left: "16%" }],
-      {
-        duration: 7500,
+  imgTranvia.classList.add("homePrimera")
+}
+
+let animacion = null
+let retrocediendo = false
+let tiempoTranscurrido = 0
+
+function moverseAvanzar(e) {
+  if (e.type == "mousedown") {
+    btnAvance.classList.add("active")
+
+    if (!retrocediendo) {
+      // Iniciar la animación solo si no estamos retrocediendo
+      animacion = imgTranvia.animate([{ left: "16%" }, { left: "80%" }], {
+        duration: 5000,
         iterations: Infinity,
-        delay: 500,
-      }
-    )
-  }
-  isAnimating = true
-}
-
-function pausarOcontinuarAnimacion() {
-  if (animation) {
-    if (!animation.playState || animation.playState === "running") {
-      btnParo.classList.add("active")
-      animation.pause()
-    } else {
-      btnParo.classList.remove("active")
-      animation.play()
+        fill: "forwards",
+        playbackRate: 1,
+        delay: -tiempoTranscurrido,
+      })
+    }
+  } else {
+    if (animacion) {
+      btnAvance.classList.remove("active")
+      tiempoTranscurrido = animacion.currentTime
+      animacion.pause()
     }
   }
 }
 
-function avanzar() {
-  btnAvance.classList.toggle("active")
-  setTimeout(() => btnAvance.classList.toggle("active"), 3000)
-}
+function moverseRetroceder(e) {
+  if (e.type == "mousedown") {
+    btnRetroceso.classList.add("active")
 
-function retroceder() {
-  btnRetroceso.classList.toggle("active")
+    if (retrocediendo) {
+      // Iniciar la animación solo si estamos retrocediendo
+      animacion = imgTranvia.animate([{ left: "80%" }, { left: "16%" }], {
+        duration: 5000,
+        iterations: Infinity,
+        fill: "forwards",
+        playbackRate: -1,
+        delay: -tiempoTranscurrido,
+      })
+    }
+  } else {
+    if (animacion) {
+      btnRetroceso.classList.remove("active")
+      tiempoTranscurrido = animacion.currentTime
+      animacion.pause()
+    }
+  }
+
+  retrocediendo = !retrocediendo // Cambiar la dirección de retroceso
 }
