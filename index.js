@@ -78,3 +78,9 @@ function moverseRetroceder(e) {
 
   retrocediendo = !retrocediendo // Cambiar la dirección de retroceso
 }
+
+//Funcionalidades conexion con plc siemens
+
+setInterval(() =>fetch("sites/leer_variable_posicion.html")
+        .then(response => response.text())
+        .then(datos => document.getElementById("posicion").innerHTML = datos), 1000);
