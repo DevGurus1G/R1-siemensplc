@@ -25,6 +25,8 @@ let inicio;
 let orden_mover;
 // Array donde se guardan todas las variables que se leen del archivo "leer_variables.html"
 let arrayVariablesPlc = new Array();
+// Variable para saber en que parada esta actualmente el tranvia
+let posicionActual;
 
 setInterval(() =>fetch("sites/leer_variables.html")
         .then(response => response.text())
@@ -37,3 +39,22 @@ setInterval(() =>{
   inicio = arrayVariablesPlc[3];
   orden_mover = arrayVariablesPlc[4];
 }, 500);
+
+//Funciones para la logica del movimiento
+
+function homingParada0(){
+  if(homing == "1"){
+    //TODO Aqui va el codigo para la animacion de cochera a parada 0
+  }
+}
+
+function movimientoCiclico(){
+  if(inicio == "1"){
+    //TODO Aqui va el codigo para que empieze la animacion ciclica
+  }
+}
+
+function comprobarListoMoverCiclico(){
+  // Funcion que devuelve un 1 cuando esta listo para moverse
+  return orden_mover == "1" ? 1 : 0
+}
