@@ -23,24 +23,17 @@ let destino;
 let confirmar_destino;
 let inicio;
 let orden_mover;
-let prueba = new Array();
+// Array donde se guardan todas las variables que se leen del archivo "leer_variables.html"
+let arrayVariablesPlc = new Array();
 
 setInterval(() =>fetch("sites/leer_variables.html")
         .then(response => response.text())
-        .then(datos => prueba = datos.split("/")), 500);
+        .then(datos => arrayVariablesPlc = datos.split("/")), 500);
 
 setInterval(() =>{
-  homing = prueba[0];
-  destino = prueba[1];
-  confirmar_destino = prueba[2];
-  inicio = prueba[3];
-  orden_mover = prueba[4];
-}, 500);
-
-setInterval(() => {
-  document.getElementById("homing").innerHTML = "Homing: " + homing;
-  document.getElementById("destino").innerHTML = "destino: " + destino;
-  document.getElementById("c_destino").innerHTML = "confirmar_destino: " + confirmar_destino;
-  document.getElementById("inicio").innerHTML = "inicio: " + inicio;
-  document.getElementById("o_mover").innerHTML = "orden_mover: " + orden_mover;
+  homing = arrayVariablesPlc[0];
+  destino = arrayVariablesPlc[1];
+  confirmar_destino = arrayVariablesPlc[2];
+  inicio = arrayVariablesPlc[3];
+  orden_mover = arrayVariablesPlc[4];
 }, 500);
