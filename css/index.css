@@ -7,6 +7,27 @@ main {
   width: 100%;
   max-width: 1200px;
 }
+.titulo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.estado {
+  width: 2em;
+  height: 2em;
+  background-color: #dc2424;
+  border-radius: 50%;
+  position: relative;
+}
+.estado:hover .leyenda {
+  opacity: 1;
+}
+
+.encendido {
+  background-color: #006f2b;
+}
 
 .mapa-tranvia {
   display: flex;
@@ -43,17 +64,17 @@ main {
 }
 
 .quintaCuarta {
-  animation: primeraSegunda 1.5s reverse 0s;
+  animation: quintaCuarta 1.5s forwards 0s;
 }
 .cuartaTercera {
-  animation: segundaTercera 1.5s reverse 0s;
+  animation: cuartaTercera 1.5s forwards 0s;
 }
 
 .terceraSegunda {
-  animation: terceraCuarta 1.5s reverse 0s;
+  animation: terceraSegunda 1.5s forwards 0s;
 }
 .segundaPrimera {
-  animation: cuartaQuinta 1.5s reverse 0s;
+  animation: segundaPrimera 1.5s forwards 0s;
 }
 .tranvia img {
   width: 100px;
@@ -115,12 +136,15 @@ main {
 }
 
 .botones {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-items: center;
+  place-content: center;
 }
 
-.botones svg {
+.botones svg,
+svg {
   width: 2em;
   height: 2em;
   filter: invert(100%);
@@ -149,6 +173,50 @@ main {
 
 .botones #retroceso .icon {
   transform: rotate(180deg);
+}
+
+.botones select {
+  grid-column: 1 / 3;
+  width: 100%;
+  border: 1px solid #006f2b;
+  padding: 1em;
+  background-color: #006f2b;
+  color: #ffffff;
+  appearance: none;
+}
+
+select {
+  cursor: pointer;
+  padding: 1em 2em;
+  background: #006f2b;
+  color: #fff;
+  border-radius: 1em;
+}
+
+select:hover {
+  background: #58ab27;
+}
+
+.parada form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.parada button {
+  background-color: #006f2b;
+  color: #fff;
+  padding: 1em 2em;
+  border-radius: 1em;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.parada button:hover {
+  background-color: #58ab27;
 }
 
 /* Animaciones ----------------------------------------------------------------   */
@@ -198,6 +266,38 @@ main {
   }
 }
 
+@keyframes segundaPrimera {
+  0% {
+    left: 32%;
+  }
+  100% {
+    left: 16%;
+  }
+}
+@keyframes terceraSegunda {
+  0% {
+    left: 48%;
+  }
+  100% {
+    left: 32%;
+  }
+}
+@keyframes cuartaTercera {
+  0% {
+    left: 64%;
+  }
+  100% {
+    left: 48%;
+  }
+}
+@keyframes quintaCuarta {
+  0% {
+    left: 80%;
+  }
+  100% {
+    left: 64%;
+  }
+}
 /* Responsive -----------------------------------------------------------------   */
 
 @media screen and (min-width: 600px) {
@@ -205,7 +305,7 @@ main {
     margin: 0 auto;
   }
   .botones {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   .botones button:first-child {
     border-top-left-radius: 1em;
