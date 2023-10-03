@@ -6,6 +6,7 @@ const btnEnviar = document.querySelector("#enviar")
 const imgTranvia = document.querySelector(".tranvia")
 const pilotoEncendido = document.querySelector(".estado")
 const leyendaPiloto = pilotoEncendido.querySelector(".leyenda")
+const bdd = '"DATOSWEB"';
 
 let animacionesNombre = [
   "homePrimera",
@@ -94,7 +95,16 @@ function comprobarListoMoverCiclico() {
 
 function empezarAnimacion(contador) {
   btnMartxa.classList.add("active")
-
   imgTranvia.classList.remove(...animacionesNombre)
   imgTranvia.classList.add(animacionesNombre[contador])
+}
+
+function mandarDatos(variable,valor){
+  fetch(window.location.href, {
+    method: 'POST',
+    body: '' + bdd + '.' + variable + '=' + valor + '', // El dato que deseas enviar
+    headers: {
+        'Content-Type': 'text/plain' // Especifica el tipo de contenido como texto plano
+    }
+})
 }
