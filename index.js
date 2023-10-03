@@ -1,8 +1,8 @@
 // constantes de los botones e img tranvia
-const btnMartxa = document.querySelector("#martxa")
+const btnInicio = document.querySelector("#inicio")
 const btnParar = document.querySelector("#parar")
-const formParada = document.querySelector("#formParada")
-const btnEnviar = document.querySelector("#enviar")
+const btnConfirmarDestino = document.querySelector("#confirmarDestino")
+const desplegableDestino = document.querySelector("#paradas")
 const imgTranvia = document.querySelector(".tranvia")
 const pilotoEncendido = document.querySelector(".estado")
 const leyendaPiloto = pilotoEncendido.querySelector(".leyenda")
@@ -21,7 +21,7 @@ let animacionesNombre = [
 ]
 
 function empezarAnimacion() {
-  btnMartxa.classList.add("active")
+  btnInicio.classList.add("active")
   imgTranvia.classList.add("homePrimera")
 }
 
@@ -94,7 +94,7 @@ function comprobarListoMoverCiclico() {
 }
 
 function empezarAnimacion(contador) {
-  btnMartxa.classList.add("active")
+  btnInicio.classList.add("active")
   imgTranvia.classList.remove(...animacionesNombre)
   imgTranvia.classList.add(animacionesNombre[contador])
 }
@@ -102,9 +102,16 @@ function empezarAnimacion(contador) {
 function mandarDatos(variable,valor){
   fetch(window.location.href, {
     method: 'POST',
-    body: '' + bdd + '.' + variable + '=' + valor + '', // El dato que deseas enviar
+    body: '' + bdd + '.' + variable + '=' + valor + '', 
     headers: {
-        'Content-Type': 'text/plain' // Especifica el tipo de contenido como texto plano
+        'Content-Type': 'text/plain'
     }
 })
 }
+
+//Eventos cuando se clicka para mandar datos
+
+btnInicio.addEventListener("click", mandarDatos(btnInicio.tagName,btnInicio.value));
+btnParar.addEventListener("click", mandarDatos(btnParar.tagName,btnParar.value));
+btnConfirmarDestino.addEventListener("click", mandarDatos(btnConfirmarDestino.tagName,btnConfirmarDestino.value));
+desplegableDestino.addEventListener("click", mandarDatos(desplegableDestino.tagName,desplegableDestino.value));

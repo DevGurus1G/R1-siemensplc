@@ -60,8 +60,7 @@
           </div>
         </article>
         <article class="parada">
-          <form id="formParada" method="post">
-            <select name='"DATOSWEB".DESTINO' id="paradas">
+            <select name='DESTINO' id="paradas">
               <option value="0" selected>Parada 1</option>
               <option value="1">Parada 2</option>
               <option value="2">Parada 3</option>
@@ -70,11 +69,11 @@
             </select>
 
             <button
-              type="submit"
-              id="enviar"
+              type="button"
+              id="confirmarDestino"
               value="1"
-              class="btnEnviar"
-              name='"DATOSWEB".CONFIRMAR_DESTINO'
+              class="btnConfirmarDestino"
+              name='CONFIRMAR_DESTINO'
             >
               <div class="icon">
                 <svg
@@ -125,14 +124,12 @@
               </div>
               <span>Confirmar parada</span>
             </button>
-          </form>
         </article>
         <article class="botones">
-          <form method="post">
             <button
-              type="submit"
-              id="martxa"
-              name='"DATOSWEB".INICIO'
+              type="button"
+              id="inicio"
+              name='INICIO'
               value="1"
             >
               <div class="icon">
@@ -172,7 +169,7 @@
               </div>
               <span>Inicio</span>
             </button>
-            <button type="submit" id="parar" name='"DATOSWEB".INICIO' value="0">
+            <button type="button" id="parar" name='INICIO' value="0">
               <div class="icon">
                 <svg
                   fill="#000000"
@@ -190,7 +187,6 @@
               </div>
               <span>Parar</span>
             </button>
-          </form>
         </article>
       </main>
       <footer>

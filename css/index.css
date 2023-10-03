@@ -135,7 +135,7 @@ main {
   opacity: 1;
 }
 
-.botones form {
+.botones{
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -197,7 +197,7 @@ select:hover {
   background: #58ab27;
 }
 
-.parada form {
+.parada{
   display: flex;
   align-items: center;
   justify-content: space-around;
