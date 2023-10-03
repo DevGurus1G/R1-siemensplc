@@ -55,13 +55,13 @@ setInterval(() => {
 
 setInterval(() => movimientoCiclico(), 500)
 
-setInterval(() => {
-  console.log("destino "+destino)
-  console.log("cdest " + confirmar_destino)
-  console.log("inicio "+inicio)
-  console.log("o_mover "+orden_mover)
-  console.log("homing" + homing)
-}, 500)
+// setInterval(() => {
+//   console.log("destino "+destino)
+//   console.log("cdest " + confirmar_destino)
+//   console.log("inicio "+inicio)
+//   console.log("o_mover "+orden_mover)
+//   console.log("homing" + homing)
+// }, 500)
 
 /*
 do
