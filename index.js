@@ -4,8 +4,11 @@ const btnParar = document.querySelector("#parar")
 const formParada = document.querySelector("#formParada")
 const btnEnviar = document.querySelector("#enviar")
 const imgTranvia = document.querySelector(".tranvia")
+const pilotoEncendido = document.querySelector(".estado")
+const leyendaPiloto = pilotoEncendido.querySelector(".leyenda")
 
 let animacionesNombre = [
+  "homePrimera",
   "primeraSegunda",
   "segundaTercera",
   "terceraCuarta",
@@ -41,7 +44,7 @@ setInterval(
 )
 
 setInterval(() => {
-  homing = arrayVariablesPlc[0]
+  
   destino = arrayVariablesPlc[1]
   confirmar_destino = arrayVariablesPlc[2]
   inicio = arrayVariablesPlc[3]
@@ -50,15 +53,28 @@ setInterval(() => {
 
 setInterval(() => movimientoCiclico(), 200)
 
+do
+{
+
+  homing = arrayVariablesPlc[0];
+
+  homingParada0();
+  
+}
+while(homing =! "1")
+
+
 //Funciones para la logica del movimiento
 
 function homingParada0() {
   if (homing == "1") {
     //TODO Aqui va el codigo para la animacion de cochera a parada 0
-    btnMartxa.classList.toggle("active")
-    imgTranvia.classList.add("homePrimera")
+    pilotoEncendido.style.backgroundColor = "#006f2b";
+    leyendaPiloto.textContent = "Encendido";
   }
 }
+
+
 let contador = 0
 function movimientoCiclico() {
   if (inicio == "1") {
