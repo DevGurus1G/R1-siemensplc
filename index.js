@@ -62,17 +62,23 @@ function homingParada0() {
 
 let posicionActual = 0
 let entrado = false
+let ejecutado = false
 function movimientoCiclico() {
-  if (inicio == "1" || inicio == 1) {
+  if (inicio == 1) {
 	  if(!entrado) {
 		 imgTranvia.classList.add("homePrimera")
 		 entrado = true
 	  }
     //TODO Aqui va el codigo para que empieze la animacion ciclica
-    if (comprobarListoMoverCiclico()) {
+    if (comprobarListoMoverCiclico() && !ejecutado) {
       if (posicionActual == 8) posicionActual = 0
-      empezarAnimacion(posicionActual)
-      posicionActual++
+        empezarAnimacion(posicionActual)
+        posicionActual++
+        ejecutado = true
+    }else{
+      if(!comprobarListoMoverCiclico()){
+        ejecutado = false
+      }
     }
   }
 }
