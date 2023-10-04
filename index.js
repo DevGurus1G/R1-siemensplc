@@ -8,8 +8,6 @@ const pilotoEncendido = document.querySelector(".estado")
 const leyendaPiloto = pilotoEncendido.querySelector(".leyenda")
 const bdd = '"DATOSWEB"';
 
-alert(bdd);
-
 let animacionesNombre = [
   "primeraSegunda",
   "segundaTercera",
@@ -34,8 +32,6 @@ let inicio
 let orden_mover
 // Array donde se guardan todas las variables que se leen del archivo "leer_variables.html"
 let arrayVariablesPlc = new Array()
-// Variable para saber en que parada esta actualmente el tranvia
-let posicionActual
 
 setInterval(
   () =>
@@ -53,40 +49,18 @@ setInterval(() => {
   orden_mover = arrayVariablesPlc[4]
 }, 500)
 
-setInterval(() => movimientoCiclico(), 500)
-
-// setInterval(() => {
-//   console.log("destino "+destino)
-//   console.log("cdest " + confirmar_destino)
-//   console.log("inicio "+inicio)
-//   console.log("o_mover "+orden_mover)
-//   console.log("homing" + homing)
-// }, 500)
-
-/*
-do
-{
-
-  
-
-  homingParada0()
-  
-}
-while(homing != "1")*/
-
+setInterval(() => movimientoCiclico(), 1000)
 
 //Funciones para la logica del movimiento
 
 function homingParada0() {
   if (homing == "1") {
-    //TODO Aqui va el codigo para la animacion de cochera a parada 0
     pilotoEncendido.style.backgroundColor = "#006f2b";
     leyendaPiloto.textContent = "Encendido";
   }
 }
 
-
-let contador = 0
+let posicionActual = 0
 let entrado = false
 function movimientoCiclico() {
   if (inicio == "1" || inicio == 1) {
@@ -96,22 +70,22 @@ function movimientoCiclico() {
 	  }
     //TODO Aqui va el codigo para que empieze la animacion ciclica
     if (comprobarListoMoverCiclico()) {
-      if (contador == 8) contador = 0
-      empezarAnimacion(contador)
-      contador++
+      if (posicionActual == 8) posicionActual = 0
+      empezarAnimacion(posicionActual)
+      posicionActual++
     }
   }
 }
 
 function comprobarListoMoverCiclico() {
-  // Funcion que devuelve un 1 cuando esta listo para moverse
+  // Funcion que devuelve un true cuando esta listo para moverse
   return orden_mover == 1 ? true : false
 }
 
-function empezarAnimacion(contador) {
+function empezarAnimacion(posicionActual) {
   btnInicio.classList.add("active")
   imgTranvia.classList.remove(...animacionesNombre)
-  imgTranvia.classList.add(animacionesNombre[contador])
+  imgTranvia.classList.add(animacionesNombre[posicionActual])
 }
 
 function mandarDatos(variable,valor){
@@ -124,7 +98,7 @@ function mandarDatos(variable,valor){
 })
 }
 
-//Eventos cuando se clicka para mandar datos
+//Eventos cuando se clicka botones para mandar datos
 
 btnInicio.addEventListener("click", () => {
 	mandarDatos("INICIO",1)

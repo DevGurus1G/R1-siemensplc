@@ -221,9 +221,6 @@ select:hover {
 
 /* Animaciones ----------------------------------------------------------------   */
 
-:root {
-  --left-actual: 16%;
-}
 @keyframes homePrimera {
   0% {
     left: 0%;
@@ -318,36 +315,84 @@ select:hover {
     left: 3%;
   }
 
-  @keyframes avanceTranvia {
+  @keyframes homePrimera {
     0% {
-      left: 19%;
+      left: 3%;
     }
-    10% {
-      left: 36%;
+    100% {
+      left: 20%;
     }
-    20% {
+  }
+  
+  @keyframes primeraSegunda {
+    0% {
+      left: 20%;
+    }
+    100% {
+      left: 37%;
+    }
+  }
+
+  @keyframes segundaTercera {
+    0% {
+      left: 37%;
+    }
+    100% {
       left: 53%;
     }
-    30% {
-      left: 70%;
-    }
-    40% {
-      left: 86%;
-    }
-    50% {
-      left: 86%;
-    }
-    60% {
-      left: 70%;
-    }
-    70% {
+  }
+
+  @keyframes terceraCuarta {
+    0% {
       left: 53%;
     }
-    80% {
-      left: 36%;
+    100% {
+      left: 70%;
     }
-    90% {
-      left: 19%;
+  }
+
+  @keyframes cuartaQuinta {
+    0% {
+      left: 70%;
+    }
+    100% {
+      left: 87%;
+    }
+  }
+  
+  @keyframes segundaPrimera {
+    0% {
+      left: 37%;
+    }
+    100% {
+      left: 20%;
+    }
+  }
+
+  @keyframes terceraSegunda {
+    0% {
+      left: 53%;
+    }
+    100% {
+      left: 37%;
+    }
+  }
+
+  @keyframes cuartaTercera {
+    0% {
+      left: 70%;
+    }
+    100% {
+      left: 53%;
+    }
+  }
+  
+  @keyframes quintaCuarta {
+    0% {
+      left: 87%;
+    }
+    100% {
+      left: 70%;
     }
   }
 }
