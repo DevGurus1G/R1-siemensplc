@@ -57,34 +57,13 @@ setInterval(() => movimientoCiclico(), 1000)
 
 //Funcionas y Promesa para comenzar el programa con el homing
 
-function verificarHoming(){
-
-  return new Promise((resolve, reject) => {
-
-      if (comprobarHomingNumerico()) {
-          resolve("El homing esta encendido.");
-      } else {
-          reject("El homing esta apagado.");
-      }
-       
-  });
-
-}
-
-function comprobarHomingNumerico() {
-  return homing == 1 ? true : false
-}
-
-verificarHoming()
-.then((resultado) => {
+setInterval(() => {
+  if(homing == 1){
     homingEncendido()
-})
-.catch((error) => {
-  setTimeout(() =>{
-    verificarHoming()
-},500)
-
-});
+  }else{
+    homingApagado()
+  }
+}, 1000);
 
 function homingEncendido() {
   
@@ -96,6 +75,18 @@ function homingEncendido() {
   leyendaPiloto.textContent = "Encendido";
 
 }
+
+function homingApagado() {
+  
+  btnInicio.disabled = true
+  btnParar.disabled = true
+  btnConfirmarDestino.disabled = true
+  desplegableDestino.disabled = true
+  pilotoEncendido.style.backgroundColor = "#dc2424";
+  leyendaPiloto.textContent = "Apagado";
+
+}
+
 
 //Funciones para la logica del movimiento
 
@@ -145,6 +136,69 @@ function mandarDatos(variable,valor){
 })
 }
 
+//Movimiento Manual
+
+function reproducirAnimacion(animacion) {
+  return new Promise((resolve) => {
+    // Simulación de reproducción de animación (puedes sustituir esta lógica por tu propia implementación)
+    console.log(`Reproduciendo animación: ${animacion}`);
+    setTimeout(() => {
+      console.log(`Animación ${animacion} terminada.`);
+      resolve();
+    }, 1000); // Simula una duración de 1 segundo por animación
+  });
+}
+
+// Función para reproducir animaciones en secuencia
+async function reproducirSecuencialmente(animaciones) {
+  for (const animacion of animaciones) {
+    await reproducirAnimacion(animacion);
+  }
+}
+
+let paradasSeleccionadas
+
+// Crear un subconjunto de animaciones desde la parada actual hasta la parada de destino
+function elegirDireccion(){
+
+  let cercano = posiciones.reduce((anterior, actual) => {
+    return Math.abs(actual - contador) < Math.abs(anterior - contador)
+    ? actual
+    : anterior
+    })
+  
+  if(cercano >= 4){
+      paradasSeleccionadas = animacionesNombre.slice(contador - 1, cercano + 1);
+  }else{
+      paradasSeleccionadas = animacionesNombre.slice(cercano -1 , contador +1);
+  }
+
+}
+
+// Lanzar el tranvía desde la parada actual a la parada de destino
+reproducirSecuencialmente(paradasSeleccionadas)
+  .then(() => {
+    console.log(`Tranvía llegó a la parada ${paradaDestino}.`);
+  })
+  .catch((error) => {
+    console.error("Ocurrió un error:", error);
+  });
+
+//Array Coincidente
+  const arrayCoincidenteDestino = [1, 2, 3, 4, 3, 2, 1, 0]
+function encontrarPosicionesDestino(destino) {
+let posiciones = []
+
+for (let i = 0; i < arrayCoincidenteDestino.length; i++) {
+  if (arrayCoincidenteDestino[i] == destino) {
+    posiciones.push(i)
+  }
+}
+
+return posiciones
+}
+
+
 //Eventos cuando se clicka botones para mandar datos
 
 btnInicio.addEventListener("click", () => {
@@ -153,6 +207,8 @@ btnInicio.addEventListener("click", () => {
 btnParar.addEventListener("click", () => mandarDatos("INICIO",0));
 btnConfirmarDestino.addEventListener("click", () => {
 	mandarDatos("CONFIRMAR_DESTINO",1);
+  elegirDireccion()
+  reproducirSecuencialmente(paradasSeleccionadas)
 	setTimeout(() => mandarDatos("CONFIRMAR_DESTINO", 0), 500);
   guardarEstadisticas();
 })
