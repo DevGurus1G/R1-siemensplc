@@ -1,8 +1,12 @@
 // constantes de los botones e img tranvia
-const btnInicio = document.querySelector("#inicio").disabled = true
-const btnParar = document.querySelector("#parar").disabled = true
-const btnConfirmarDestino = document.querySelector("#confirmarDestino").disabled = true
-const desplegableDestino = document.querySelector("#paradas").disabled = true
+const btnInicio = document.querySelector("#inicio");
+btnInicio.disabled = true;
+const btnParar = document.querySelector("#parar");
+btnParar.disabled = true;
+const btnConfirmarDestino = document.querySelector("#confirmarDestino");
+btnConfirmarDestino.disabled = true;
+const desplegableDestino = document.querySelector("#paradas");
+desplegableDestino.disabled = true;
 const imgTranvia = document.querySelector(".tranvia")
 const pilotoEncendido = document.querySelector(".estado")
 const leyendaPiloto = pilotoEncendido.querySelector(".leyenda")
