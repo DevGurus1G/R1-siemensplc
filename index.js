@@ -136,68 +136,32 @@ function mandarDatos(variable,valor){
 })
 }
 
-//Movimiento Manual
+//Movimiento Manua
 
-function reproducirAnimacion(animacion) {
-  return new Promise((resolve) => {
-    // Simulación de reproducción de animación (puedes sustituir esta lógica por tu propia implementación)
-    console.log(`Reproduciendo animación: ${animacion}`);
-    setTimeout(() => {
-      console.log(`Animación ${animacion} terminada.`);
-      resolve();
-    }, 1000); // Simula una duración de 1 segundo por animación
-  });
-}
-
-// Función para reproducir animaciones en secuencia
-async function reproducirSecuencialmente(animaciones) {
-  for (const animacion of animaciones) {
-    await reproducirAnimacion(animacion);
+function movimientoManual(destinoSeleccionado) {
+  destinoPorcentajes = ["19%", "36%", "53%", "70%", "86%"]
+  imgTranvia.classList.remove(...animacionesNombre)
+  imgTranvia.classList.remove("homePrimera")
+  switch (Number(destinoSeleccionado)) {
+    case 0:
+      imgTranvia.style.left = destinoPorcentajes[0]
+      break
+    case 1:
+      imgTranvia.style.left = destinoPorcentajes[1]
+      break
+    case 2:
+      imgTranvia.style.left = destinoPorcentajes[2]
+      break
+    case 3:
+      imgTranvia.style.left = destinoPorcentajes[3]
+      break
+    case 4:
+      imgTranvia.style.left = destinoPorcentajes[4]
+      break
+    default:
+      break
   }
 }
-
-let paradasSeleccionadas
-
-// Crear un subconjunto de animaciones desde la parada actual hasta la parada de destino
-function elegirDireccion(){
-
-  let cercano = posiciones.reduce((anterior, actual) => {
-    return Math.abs(actual - contador) < Math.abs(anterior - contador)
-    ? actual
-    : anterior
-    })
-  
-  if(cercano >= 4){
-      paradasSeleccionadas = animacionesNombre.slice(contador - 1, cercano + 1);
-  }else{
-      paradasSeleccionadas = animacionesNombre.slice(cercano -1 , contador +1);
-  }
-
-}
-
-// Lanzar el tranvía desde la parada actual a la parada de destino
-reproducirSecuencialmente(paradasSeleccionadas)
-  .then(() => {
-    console.log(`Tranvía llegó a la parada ${paradaDestino}.`);
-  })
-  .catch((error) => {
-    console.error("Ocurrió un error:", error);
-  });
-
-//Array Coincidente
-  const arrayCoincidenteDestino = [1, 2, 3, 4, 3, 2, 1, 0]
-function encontrarPosicionesDestino(destino) {
-let posiciones = []
-
-for (let i = 0; i < arrayCoincidenteDestino.length; i++) {
-  if (arrayCoincidenteDestino[i] == destino) {
-    posiciones.push(i)
-  }
-}
-
-return posiciones
-}
-
 
 //Eventos cuando se clicka botones para mandar datos
 
