@@ -1,8 +1,8 @@
 // constantes de los botones e img tranvia
-const btnInicio = document.querySelector("#inicio")
-const btnParar = document.querySelector("#parar")
-const btnConfirmarDestino = document.querySelector("#confirmarDestino")
-const desplegableDestino = document.querySelector("#paradas")
+const btnInicio = document.querySelector("#inicio").disabled = true
+const btnParar = document.querySelector("#parar").disabled = true
+const btnConfirmarDestino = document.querySelector("#confirmarDestino").disabled = true
+const desplegableDestino = document.querySelector("#paradas").disabled = true
 const imgTranvia = document.querySelector(".tranvia")
 const pilotoEncendido = document.querySelector(".estado")
 const leyendaPiloto = pilotoEncendido.querySelector(".leyenda")
@@ -51,34 +51,71 @@ setInterval(() => {
 
 setInterval(() => movimientoCiclico(), 1000)
 
-//Funciones para la logica del movimiento
+//Funcionas y Promesa para comenzar el programa con el homing
 
-function homingParada0() {
-  if (homing == "1") {
-    pilotoEncendido.style.backgroundColor = "#006f2b";
-    leyendaPiloto.textContent = "Encendido";
-  }
+function verificarHoming(){
+
+  return new Promise((resolve, reject) => {
+
+      if (comprobarHomingNumerico()) {
+          resolve("El homing esta encendido.");
+      } else {
+          reject("El homing esta apagado.");
+      }
+       
+  });
+
 }
+
+function comprobarHomingNumerico() {
+  return homing == 1 ? true : false
+}
+
+verificarHoming()
+.then((resultado) => {
+    homingEncendido()
+})
+.catch((error) => {
+  setTimeout(() =>{
+    verificarHoming()
+},500)
+
+});
+
+function homingEncendido() {
+  
+  btnInicio.disabled = false
+  btnParar.disabled = false
+  btnConfirmarDestino.disabled = false
+  desplegableDestino.disabled = false
+  pilotoEncendido.style.backgroundColor = "#006f2b";
+  leyendaPiloto.textContent = "Encendido";
+
+}
+
+//Funciones para la logica del movimiento
 
 let posicionActual = 0
 let entrado = false
 let ejecutado = false
 function movimientoCiclico() {
   if (inicio == 1) {
-	  if(!entrado) {
-		 imgTranvia.classList.add("homePrimera")
-		 entrado = true
-	  }
     //TODO Aqui va el codigo para que empieze la animacion ciclica
-    if (comprobarListoMoverCiclico() && !ejecutado) {
-      if (posicionActual == 8) posicionActual = 0
+    if (comprobarListoMoverCiclico()) {
+      if(!entrado) {
+        imgTranvia.classList.add("homePrimera")
+        entrado = true
+        ejecutado = true
+       }
+      if(!ejecutado)
+      {
+        if (posicionActual == 8) posicionActual = 0
         empezarAnimacion(posicionActual)
         posicionActual++
         ejecutado = true
-    }else{
-      if(!comprobarListoMoverCiclico()){
-        ejecutado = false
       }
+    }else{
+        ejecutado = false
     }
   }
 }
