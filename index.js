@@ -153,8 +153,67 @@ btnInicio.addEventListener("click", () => {
 btnParar.addEventListener("click", () => mandarDatos("INICIO",0));
 btnConfirmarDestino.addEventListener("click", () => {
 	mandarDatos("CONFIRMAR_DESTINO",1);
-	setTimeout(() => mandarDatos("CONFIRMAR_DESTINO", 0), 500)
+	setTimeout(() => mandarDatos("CONFIRMAR_DESTINO", 0), 500);
+  guardarEstadisticas();
 })
 desplegableDestino.addEventListener("click", () => {
 	mandarDatos("DESTINO", desplegableDestino.value)
 });
+
+//Funciones para las estadisticas
+let stats;
+function guardarEstadisticas(){
+	if(localStorage.getItem("estadistica")==null){
+		stats = {
+			parada0: 0,
+			parada1: 0,
+			parada2: 0,
+			parada3: 0,
+			parada4: 0,
+		};
+		localStorage.setItem("estadistica", JSON.stringify(stats));
+	}else{
+		stats = JSON.parse(localStorage.getItem("estadistica"));
+		switch(destino){
+			case 0:
+				stats.parada0 += 1;
+				break;
+			case 1:
+				stats.parada1 += 1;
+				break;
+			case 2:
+				stats.parada2 += 1;
+				break;
+			case 3:
+				stats.parada3 += 1;
+				break;
+			case 4:
+				stats.parada4 += 1;
+				break;
+		}
+		localStorage.setItem("estadistica", JSON.stringify(stats))
+	}
+}
+
+//Funciones para posicion actual
+
+window.addEventListener("unload", (event) => {
+  localStorage.setItem("posicion", posicionActual);
+});
+  
+window.addEventListener("load", (event) => {
+posicionActual = localStorage.getItem("posicion");
+});
+
+//Funciones para cambiar orden mover desde la web (Para realizar las pruebas)
+document.getElementById("enOrdenMover").addEventListener("click", () => {
+mandarDatos("ORDEN_MOVER",1);
+});
+
+document.getElementById("apOrdenMover").addEventListener("click", () => {
+mandarDatos("ORDEN_MOVER",0);
+});
+  
+setInterval(()=>{
+document.getElementById("tOrdenMover").innerHTML = orden_mover;
+},100)
