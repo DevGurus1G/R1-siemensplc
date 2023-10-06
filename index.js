@@ -165,6 +165,7 @@ btnInicio.addEventListener("click", () => {
 btnParar.addEventListener("click", () => mandarDatos("INICIO", 0))
 btnConfirmarDestino.addEventListener("click", () => {
   mandarDatos("CONFIRMAR_DESTINO", 1)
+  movimientoManual(desplegableDestino.value)
   guardarEstadisticas()
   setTimeout(() => mandarDatos("CONFIRMAR_DESTINO", 0), 500)
 })
