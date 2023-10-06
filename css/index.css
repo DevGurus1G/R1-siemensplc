@@ -1,3 +1,4 @@
+/* CSS para la web de index */
 main {
   display: flex;
   flex-direction: column;
@@ -13,6 +14,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 1em;
+  padding-top: 1em;
 }
 .estado {
   width: 2em;
@@ -42,6 +44,7 @@ main {
   transition: left 1.5s ease-in-out;
 }
 
+/* Clases para las animaciones del ciclo */
 .homePrimera {
   animation: homePrimera 1.5s forwards 0s;
 }
@@ -49,6 +52,7 @@ main {
 .primeraSegunda {
   animation: primeraSegunda 1.5s forwards 0s;
 }
+
 .segundaTercera {
   animation: segundaTercera 1.5s forwards 0s;
 }
@@ -56,6 +60,7 @@ main {
 .terceraCuarta {
   animation: terceraCuarta 1.5s forwards 0s;
 }
+
 .cuartaQuinta {
   animation: cuartaQuinta 1.5s forwards 0s;
 }
@@ -63,6 +68,7 @@ main {
 .quintaCuarta {
   animation: quintaCuarta 1.5s forwards 0s;
 }
+
 .cuartaTercera {
   animation: cuartaTercera 1.5s forwards 0s;
 }
@@ -70,9 +76,11 @@ main {
 .terceraSegunda {
   animation: terceraSegunda 1.5s forwards 0s;
 }
+
 .segundaPrimera {
   animation: segundaPrimera 1.5s forwards 0s;
 }
+
 .tranvia img {
   width: 100px;
 }
@@ -86,6 +94,7 @@ main {
   transform: translateY(-50%);
   z-index: -1;
 }
+
 .mapa-tranvia .home {
   width: 2em;
   background-color: #dc2424;
@@ -132,10 +141,10 @@ main {
   opacity: 1;
 }
 
-.botones{
+.botones {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   place-items: center;
   place-content: center;
 }
@@ -146,6 +155,7 @@ svg {
   height: 2em;
   filter: invert(100%);
 }
+
 .botones button {
   outline: none;
   border: none;
@@ -168,20 +178,6 @@ svg {
   background-color: #58ab27;
 }
 
-.botones #retroceso .icon {
-  transform: rotate(180deg);
-}
-
-.botones select {
-  grid-column: 1 / 3;
-  width: 100%;
-  border: 1px solid #006f2b;
-  padding: 1em;
-  background-color: #006f2b;
-  color: #ffffff;
-  appearance: none;
-}
-
 select {
   cursor: pointer;
   padding: 1em 2em;
@@ -194,7 +190,7 @@ select:hover {
   background: #58ab27;
 }
 
-.parada{
+.parada {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -216,7 +212,7 @@ select:hover {
   background-color: #58ab27;
 }
 
-.parada button:disabled{
+.parada button:disabled {
   background-color: #8a8a8a;
 }
 
@@ -239,6 +235,7 @@ select:hover {
     left: 32%;
   }
 }
+
 @keyframes segundaTercera {
   0% {
     left: 32%;
@@ -247,6 +244,7 @@ select:hover {
     left: 48%;
   }
 }
+
 @keyframes terceraCuarta {
   0% {
     left: 48%;
@@ -255,6 +253,7 @@ select:hover {
     left: 64%;
   }
 }
+
 @keyframes cuartaQuinta {
   0% {
     left: 64%;
@@ -272,6 +271,7 @@ select:hover {
     left: 16%;
   }
 }
+
 @keyframes terceraSegunda {
   0% {
     left: 48%;
@@ -280,6 +280,7 @@ select:hover {
     left: 32%;
   }
 }
+
 @keyframes cuartaTercera {
   0% {
     left: 64%;
@@ -288,6 +289,7 @@ select:hover {
     left: 48%;
   }
 }
+
 @keyframes quintaCuarta {
   0% {
     left: 80%;
@@ -296,6 +298,7 @@ select:hover {
     left: 64%;
   }
 }
+
 /* Responsive -----------------------------------------------------------------   */
 
 @media screen and (min-width: 600px) {
@@ -324,7 +327,7 @@ select:hover {
       left: 20%;
     }
   }
-  
+
   @keyframes primeraSegunda {
     0% {
       left: 20%;
@@ -360,7 +363,7 @@ select:hover {
       left: 87%;
     }
   }
-  
+
   @keyframes segundaPrimera {
     0% {
       left: 37%;
@@ -387,7 +390,7 @@ select:hover {
       left: 53%;
     }
   }
-  
+
   @keyframes quintaCuarta {
     0% {
       left: 87%;

@@ -1,6 +1,6 @@
-const dataStorage = JSON.parse(localStorage.getItem("estadistica"))
+const dataStorage = JSON.parse(localStorage.getItem("estadistica"));
 
-const graph = document.querySelector("#grafico")
+const graph = document.querySelector("#grafico");
 const data = {
   datasets: [
     {
@@ -15,7 +15,7 @@ const data = {
       ],
     },
   ],
-}
+};
 
 const config = {
   type: "bar",
@@ -41,6 +41,6 @@ const config = {
       },
     },
   },
-}
+};
 
-new Chart(graph, config)
+new Chart(graph, config);
