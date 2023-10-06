@@ -1,14 +1,4 @@
-// const datosDefault = {
-//   "Parada 1": 1,
-//   "Parada 2": 4,
-//   "Parada 3": 2,
-//   "Parada 4": 4,
-//   "Parada 5": 7,
-// }
-
-// localStorage.setItem("datosDefault", JSON.stringify(datosDefault))
-
-const dataStorage = JSON.parse(localStorage.getItem("datosDefault"))
+const dataStorage = JSON.parse(localStorage.getItem("estadistica"))
 
 const graph = document.querySelector("#grafico")
 const data = {

@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estadisticas | EuskoTren</title>
     <link rel="stylesheet" href="../css/default.css" />
+    <style>
+      div.graph{
+        width: 100%;
+        max-width: 1000px;
+      }
+      main{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height: 100vh;
+      }
+    </style>
   </head>
   <body>
     <div class="contenedor">
@@ -22,7 +34,9 @@
         </nav>
       </header>
       <main>
-        <canvas id="grafico"></canvas>
+        <div class="graph">
+            <canvas id="grafico"></canvas>
+         </div>
       </main>
       <footer>
         <div class="licencia">
@@ -33,11 +47,9 @@
         <div class="logo-dev"></div>
       </footer>
     </div>
-    <link rel="stylesheet" href="../css/default.css" />
-    <link rel="stylesheet" href="../css/contacto.css" />
     <script
       type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+      src="../cdnjs.cloudflare.com_ajax_libs_Chart.js_3.8.0_chart.min.js"
     ></script>
     <script src="../estadisticas.js"></script>
   </body>

@@ -55,7 +55,7 @@ setInterval(() => {
 
 setInterval(() => movimientoCiclico(), 1000)
 
-//Funcionas y Promesa para comenzar el programa con el homing
+//Funciones para comenzar el programa con el homing
 
 setInterval(() => {
   if (homing == 1) {
@@ -90,7 +90,6 @@ let entrado = false
 let ejecutado = false
 function movimientoCiclico() {
   if (inicio == 1) {
-    //TODO Aqui va el codigo para que empieze la animacion ciclica
     if (comprobarListoMoverCiclico()) {
       if (!entrado) {
         imgTranvia.classList.add("homePrimera")
@@ -181,30 +180,30 @@ let stats
 function guardarEstadisticas() {
   if (localStorage.getItem("estadistica") == null) {
     stats = {
-      parada0: 0,
       parada1: 0,
       parada2: 0,
       parada3: 0,
       parada4: 0,
+      parada5: 0,
     }
     localStorage.setItem("estadistica", JSON.stringify(stats))
   } else {
     stats = JSON.parse(localStorage.getItem("estadistica"))
     switch (Number(destino)) {
       case 0:
-        stats.parada0 += 1
-        break
-      case 1:
         stats.parada1 += 1
         break
-      case 2:
+      case 1:
         stats.parada2 += 1
         break
-      case 3:
+      case 2:
         stats.parada3 += 1
         break
-      case 4:
+      case 3:
         stats.parada4 += 1
+        break
+      case 4:
+        stats.parada5 += 1
         break
     }
     localStorage.setItem("estadistica", JSON.stringify(stats))

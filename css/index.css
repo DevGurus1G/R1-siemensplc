@@ -39,10 +39,7 @@ main {
   position: absolute;
   left: 0;
   z-index: 1000;
-  transition: left 0.25s ease-in-out;
-  /* animation-name: avanceTranvia;
-  animation-duration: 7.5s;
-  animation-iteration-count: infinite; */
+  transition: left 1.5s ease-in-out;
 }
 
 .homePrimera {
