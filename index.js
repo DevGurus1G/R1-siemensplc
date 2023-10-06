@@ -129,30 +129,59 @@ function mandarDatos(variable, valor) {
   })
 }
 
-//Movimiento Manua
+//Movimiento Manual
+const arrayCoincidentePosicion = [1, 2, 3, 4, 3, 2, 1, 0]
+function encontrarPosicionesDestino(destino) {
+  const posiciones = []
+
+  for (let i = 0; i < arrayCoincidentePosicion.length; i++) {
+    if (arrayCoincidentePosicion[i] === destino) {
+      posiciones.push(i)
+    }
+  }
+
+  return posiciones
+}
 
 function movimientoManual(destinoSeleccionado) {
-  destinoPorcentajes = ["19%", "36%", "53%", "70%", "86%"]
+  destinoPorcentajes = [19, 36, 53, 70, 86]
   imgTranvia.classList.remove(...animacionesNombre)
   imgTranvia.classList.remove("homePrimera")
   let leftAnterior = imgTranvia.style.left
-  let leftAnteriorLimpio = leftAnterior.substring
-  let esMenor = false
+  let leftAnteriorLimpio = leftAnterior.substring(0, leftAnterior.length - 1)
+  const posiciones = encontrarPosicionesDestino(destinoSeleccionado)
+  console.log(posiciones)
+  console.log(object)
   switch (Number(destinoSeleccionado)) {
     case 0:
-      imgTranvia.style.left = destinoPorcentajes[0]
+      imgTranvia.style.left = destinoPorcentajes[0] + "%"
+      if (leftAnteriorLimpio < destinoPorcentajes[0])
+        posicionActual = posiciones[0]
+      else posicionActual = posiciones[1]
       break
     case 1:
       imgTranvia.style.left = destinoPorcentajes[1]
+      if (leftAnteriorLimpio < destinoPorcentajes[1])
+        posicionActual = posiciones[0]
+      else posicionActual = posiciones[1]
       break
     case 2:
       imgTranvia.style.left = destinoPorcentajes[2]
+      if (leftAnteriorLimpio < destinoPorcentajes[2])
+        posicionActual = posiciones[0]
+      else posicionActual = posiciones[1]
       break
     case 3:
       imgTranvia.style.left = destinoPorcentajes[3]
+      if (leftAnteriorLimpio < destinoPorcentajes[3])
+        posicionActual = posiciones[0]
+      else posicionActual = posiciones[1]
       break
     case 4:
       imgTranvia.style.left = destinoPorcentajes[4]
+      if (leftAnteriorLimpio < destinoPorcentajes[4])
+        posicionActual = posiciones[0]
+      else posicionActual = posiciones[1]
       break
     default:
       break
@@ -212,13 +241,13 @@ function guardarEstadisticas() {
 
 //Funciones para posicion actual
 
-window.addEventListener("unload", (event) => {
-  localStorage.setItem("posicion", posicionActual)
-})
+// window.addEventListener("unload", (event) => {
+//   localStorage.setItem("posicion", posicionActual)
+// })
 
-window.addEventListener("load", (event) => {
-  posicionActual = localStorage.getItem("posicion")
-})
+// window.addEventListener("load", (event) => {
+//   posicionActual = localStorage.getItem("posicion")
+// })
 
 //Funciones para cambiar orden mover desde la web (Para realizar las pruebas)
 document.getElementById("enOrdenMover").addEventListener("click", () => {
