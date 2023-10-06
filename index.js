@@ -136,6 +136,9 @@ function movimientoManual(destinoSeleccionado) {
   destinoPorcentajes = ["19%", "36%", "53%", "70%", "86%"]
   imgTranvia.classList.remove(...animacionesNombre)
   imgTranvia.classList.remove("homePrimera")
+  let leftAnterior = imgTranvia.style.left
+  let leftAnteriorLimpio = leftAnterior.substring
+  let esMenor = false
   switch (Number(destinoSeleccionado)) {
     case 0:
       imgTranvia.style.left = destinoPorcentajes[0]
@@ -187,7 +190,7 @@ function guardarEstadisticas() {
     localStorage.setItem("estadistica", JSON.stringify(stats))
   } else {
     stats = JSON.parse(localStorage.getItem("estadistica"))
-    switch (destino) {
+    switch (Number(destino)) {
       case 0:
         stats.parada0 += 1
         break
