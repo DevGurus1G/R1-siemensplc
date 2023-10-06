@@ -160,11 +160,11 @@ svg {
   background-color: #ed0e0e;
 }
 
-.active {
+.botenes .active {
   background-color: #006f2b;
 }
 
-.active:hover {
+.botones .active:hover {
   background-color: #58ab27;
 }
 
@@ -214,6 +214,10 @@ select:hover {
 
 .parada button:hover {
   background-color: #58ab27;
+}
+
+.parada button:disabled{
+  background-color: #8a8a8a;
 }
 
 /* Animaciones ----------------------------------------------------------------   */

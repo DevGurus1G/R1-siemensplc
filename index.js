@@ -176,8 +176,6 @@ function movimientoManual(destinoSeleccionado) {
   let leftAnterior = imgTranvia.style.left
   let leftAnteriorLimpio = leftAnterior.substring(0, leftAnterior.length - 1)
   const posiciones = encontrarPosicionesDestino(Number(destinoSeleccionado))
-  
-  if (comprobarListoMoverCiclico()) {
     switch (Number(destinoSeleccionado)) {
       case 0:
         imgTranvia.style.left = destinoPorcentajes[0] + "%"
@@ -213,8 +211,7 @@ function movimientoManual(destinoSeleccionado) {
         break
     }
     entrado = true;
-  } 
-}
+  }
 
 //Eventos cuando se clicka botones para mandar datos
 
