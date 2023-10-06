@@ -160,11 +160,11 @@ svg {
   background-color: #ed0e0e;
 }
 
-.botones .active {
+.active {
   background-color: #006f2b;
 }
 
-.botones .active:hover {
+.active:hover {
   background-color: #58ab27;
 }
 

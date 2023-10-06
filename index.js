@@ -42,7 +42,7 @@ setInterval(
     fetch("sites/leer_variables.html")
       .then((response) => response.text())
       .then((datos) => (arrayVariablesPlc = datos.split("/"))),
-  500
+  10
 )
 
 setInterval(() => {
@@ -51,11 +51,22 @@ setInterval(() => {
   confirmar_destino = arrayVariablesPlc[2]
   inicio = arrayVariablesPlc[3]
   orden_mover = arrayVariablesPlc[4]
-}, 500)
+}, 12)
 
-setInterval(() => movimientoCiclico(), 1000)
+setInterval(() => movimientoCiclico(), 15)
 
 //Funciones para comenzar el programa con el homing
+
+setInterval(() => {
+if(homing ==1){
+	  if (inicio == 1) {
+      inicioEncendido()
+  } else {
+      inicioApagado()
+  }
+}
+
+}, 500)
 
 setInterval(() => {
   if (homing == 1) {
@@ -65,11 +76,26 @@ setInterval(() => {
   }
 }, 1000)
 
+
+//Funciones para cambiar los colores y disponibilidad de los botones
+function inicioEncendido() {
+  btnConfirmarDestino.disabled = true
+  desplegableDestino.disabled = true
+  btnInicio.classList.add("active")
+  btnParar.classList.remove("active")
+}
+
+function inicioApagado() {
+  btnConfirmarDestino.disabled = false
+  desplegableDestino.disabled = false
+  btnInicio.classList.remove("active")
+  btnParar.classList.add("active")
+}
+
+
 function homingEncendido() {
   btnInicio.disabled = false
   btnParar.disabled = false
-  btnConfirmarDestino.disabled = false
-  desplegableDestino.disabled = false
   pilotoEncendido.style.backgroundColor = "#006f2b"
   leyendaPiloto.textContent = "Encendido"
 }
@@ -149,43 +175,45 @@ function movimientoManual(destinoSeleccionado) {
   imgTranvia.classList.remove("homePrimera")
   let leftAnterior = imgTranvia.style.left
   let leftAnteriorLimpio = leftAnterior.substring(0, leftAnterior.length - 1)
-  const posiciones = encontrarPosicionesDestino(destinoSeleccionado)
-  console.log(posiciones)
-  console.log(object)
-  switch (Number(destinoSeleccionado)) {
-    case 0:
-      imgTranvia.style.left = destinoPorcentajes[0] + "%"
-      if (leftAnteriorLimpio < destinoPorcentajes[0])
-        posicionActual = posiciones[0]
-      else posicionActual = posiciones[1]
-      break
-    case 1:
-      imgTranvia.style.left = destinoPorcentajes[1]
-      if (leftAnteriorLimpio < destinoPorcentajes[1])
-        posicionActual = posiciones[0]
-      else posicionActual = posiciones[1]
-      break
-    case 2:
-      imgTranvia.style.left = destinoPorcentajes[2]
-      if (leftAnteriorLimpio < destinoPorcentajes[2])
-        posicionActual = posiciones[0]
-      else posicionActual = posiciones[1]
-      break
-    case 3:
-      imgTranvia.style.left = destinoPorcentajes[3]
-      if (leftAnteriorLimpio < destinoPorcentajes[3])
-        posicionActual = posiciones[0]
-      else posicionActual = posiciones[1]
-      break
-    case 4:
-      imgTranvia.style.left = destinoPorcentajes[4]
-      if (leftAnteriorLimpio < destinoPorcentajes[4])
-        posicionActual = posiciones[0]
-      else posicionActual = posiciones[1]
-      break
-    default:
-      break
-  }
+  const posiciones = encontrarPosicionesDestino(Number(destinoSeleccionado))
+  
+  if (comprobarListoMoverCiclico()) {
+    switch (Number(destinoSeleccionado)) {
+      case 0:
+        imgTranvia.style.left = destinoPorcentajes[0] + "%"
+        if (leftAnteriorLimpio < destinoPorcentajes[0])
+          posicionActual = posiciones[0] + 1
+        else posicionActual = posiciones[1] + 1
+        break
+      case 1:
+        imgTranvia.style.left = destinoPorcentajes[1] + "%"
+        if (leftAnteriorLimpio < destinoPorcentajes[1])
+          posicionActual = posiciones[0] + 1
+        else posicionActual = posiciones[1] + 1
+        break
+      case 2:
+        imgTranvia.style.left = destinoPorcentajes[2] + "%"
+        if (leftAnteriorLimpio < destinoPorcentajes[2])
+          posicionActual = posiciones[0] + 1
+        else posicionActual = posiciones[1] + 1
+        break
+      case 3:
+        imgTranvia.style.left = destinoPorcentajes[3] + "%"
+        if (leftAnteriorLimpio < destinoPorcentajes[3])
+          posicionActual = posiciones[0] + 1
+        else posicionActual = posiciones[1] + 1
+        break
+      case 4:
+        imgTranvia.style.left = destinoPorcentajes[4] + "%"
+        if (leftAnteriorLimpio < destinoPorcentajes[4])
+          posicionActual = posiciones[0] + 1
+        else posicionActual = posiciones[1] + 1
+        break
+      default:
+        break
+    }
+    entrado = true;
+  } 
 }
 
 //Eventos cuando se clicka botones para mandar datos
