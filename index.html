@@ -11,6 +11,29 @@
     <title>EuskoTren</title>
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .botones-pruebas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        padding: 0.2em;
+      }
+
+      .botones-pruebas button {
+        background-color: #a28b2c;
+        color: #fff;
+        padding: 0.5em;
+        border: 0;
+        border-radius: 1em;
+      }
+      .botones-pruebas button:hover {
+        background-color: #ffcc00;
+      }
+      .botones-pruebas span {
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
     <div class="contenedor">
@@ -24,13 +47,25 @@
             <li><a href="sites/contacto.html">Contacto</a></li>
           </ul>
           <!-- Botones y span  que solo seran necesarios para facilitar las pruebas-->
-          <button type="button" id="enOrdenMover" name="ORDEN_MOVER" value="1">
-            Encender orden mover
-          </button>
-          <button type="button" id="apOrdenMover" name="ORDEN_MOVER" value="0">
-            Apagar orden mover
-          </button>
-          <span id="tOrdenMover"></span>
+          <div class="botones-pruebas">
+            <button
+              type="button"
+              id="enOrdenMover"
+              name="ORDEN_MOVER"
+              value="1"
+            >
+              Encender orden mover
+            </button>
+            <button
+              type="button"
+              id="apOrdenMover"
+              name="ORDEN_MOVER"
+              value="0"
+            >
+              Apagar orden mover
+            </button>
+            <span id="tOrdenMover"></span>
+          </div>
         </nav>
       </header>
       <main>
