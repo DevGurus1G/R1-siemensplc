@@ -2,7 +2,7 @@
 
 En este proyecto se nos pide desarrollar una aplicacion para realizar ciertas funcionalidades acerca de un travia desde una app web, nos juntamos con profesionales de robotica para todo el tema de sensores y demas.
 
-![Logo](./logo.png)
+![Logo](./img/logo.png)
 
 ## Autores
 
